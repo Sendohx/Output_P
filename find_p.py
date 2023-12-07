@@ -19,7 +19,7 @@ class Output_P:
 
     def formula(self, numbers):
         """
-        计算因子的p分位值（0,10,20...90）
+        计算因子的p分位值的公式
         :param numbers: 0~100的数值 
         :return: p分位值序列
         """
@@ -33,6 +33,9 @@ class Output_P:
             
             
     def transform_to_p(self):
+        """
+        把因子值序列转换成对应分位值序列
+        """
         for factor in self.factor_list:
             factor_ranks = self.data[factor].rolling(242).apply(
                         lambda x: pd.Series(x).rank(pct=True, na_option='keep').iloc[-1] * 100)
